@@ -1,0 +1,47 @@
+<mjml>
+  <mj-head>
+    <mj-title>Resume</mj-title>
+    <mj-style>
+			h4 {
+				font-size: inherit;
+			}
+			@media (max-width:480px) {
+				td {
+					padding:5px 5px !important;
+				}
+			}
+    </mj-style>
+  </mj-head>
+  <mj-body width="640px">
+	<mj-wrapper background-color="#121212" padding-top="40px">
+		<mj-section background-color="#121212" padding="0">
+      <mj-column>
+				<mj-text padding="5px 40px" color="#E7F6F2" font-family="Verdana" line-height="20px" align="left">
+					<p><h4>Hello.</h4></p>
+          <p><h4>Let me introduce myself and shortly tell you about me.</h4></p>
+					<p><h4>I have experience in direct sales and sales via teams of sales representatives. Also, I have experience working with different sales and distribution channels such as HoReCa and national retail, including working in retail itself.</h4></p>
+					<p><h4>I know how to work both with people (management, training, control) and with numbers (analytics, forecasting, budgeting).</h4></p>
+					<p><h4>I am newcomer to Canada and am actively looking for a job. Therefore, I decided to send my resume in the hope that in such a large and growing company, my skills and experience will be suitable for one of your open positions.</h4></p>
+					<p><h4>Thank you for your attention to me.</h4></p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+		<mj-section background-color="#313131" padding="20px 20px" padding-bottom="20px">
+      <mj-group width="250px">
+        <mj-column>
+          <mj-image width="45px" align="center" padding="0" padding-top="5px" href="mailto:mail2radimir@gmail.com.cz" src="https://res.cloudinary.com/dmhktov30/image/upload/v1661720369/email_white_doewcs.png" title="Email">
+          </mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-image width="40px" align="center" padding="0" href="tel:+17789553864" src="https://res.cloudinary.com/dmhktov30/image/upload/v1612171953/phone_ilsw0h.png" title="Call">
+          </mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-image width="40px" align="center" padding="0" href="https://wa.me/380981595915" src="https://res.cloudinary.com/dmhktov30/image/upload/v1612171986/WhatsApp_yptyy2.png" title="WhatsApp">
+          </mj-image>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+	</mj-wrapper>
+  </mj-body>
+</mjml>

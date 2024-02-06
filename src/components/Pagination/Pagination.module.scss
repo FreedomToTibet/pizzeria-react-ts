@@ -1,0 +1,23 @@
+.root {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	li {
+		list-style: none;
+		display: inline-block;
+		margin: 0 5px;
+		// border: 1px solid #fe5f1e;
+		// border-radius: 100%;
+		:hover {
+			cursor: pointer;
+		}
+	}
+	:global {
+		.active {
+			a {
+				text-decoration: underline;
+				font-weight: bold;
+			}
+		}
+	}
+}

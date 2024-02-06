@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import logoSvg from '../assets/img/pizza-logo.svg';
+import SearchPanel from './SearchPanel';
 
 const Header = () => {
 	return (
@@ -17,6 +18,7 @@ const Header = () => {
 							</div>
 						</div>
 					</Link>
+					<SearchPanel />
           <div className="header__cart">
             <Link to="/cart" className="button button--cart">
               <span>5.2$ </span>

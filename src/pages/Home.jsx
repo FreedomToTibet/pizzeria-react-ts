@@ -7,20 +7,23 @@ import SortPopup from '../components/SortPopup';
 import PizzaBlock from '../components/PizzaBlock';
 import { Pagination } from '../components/Pagination';
 
-import { setCategory } from '../redux/slices/filterSlice';
+import { setCategory, setIncrease } from '../redux/slices/filterSlice';
 
 export default function Home({searchValue}) {
 	const category = useSelector((state) => state.filterSlice.category);
+	const increase = useSelector((state) => state.filterSlice.increase);
 	const dispatch = useDispatch();
 
   const [pizzas, setPizzas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortBy, setSortBy] = useState({name: 'population', sort: 'rating'});
-  const [increase, setIncrease] = useState(true);
 	const [page, setPage] = useState(1);
 
 	const onClickCategory = (index) => {
 		dispatch(setCategory(index));
+	};
+	const onClickIncrease = () => {
+		dispatch(setIncrease());
 	};
 
   const host = 'https://65b3353d770d43aba4796ce5.mockapi.io/api/items';
@@ -50,7 +53,7 @@ export default function Home({searchValue}) {
         <SortPopup
           sortBy={sortBy}
           onClickSortBy={(index) => setSortBy(index)}
-          onClickIncrease={() => setIncrease(!increase)}
+          onClickIncrease={onClickIncrease}
 					increase={increase}
         />
       </div>

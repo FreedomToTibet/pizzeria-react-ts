@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Categories from '../components/Categories';
@@ -6,20 +7,28 @@ import SortPopup from '../components/SortPopup';
 import PizzaBlock from '../components/PizzaBlock';
 import { Pagination } from '../components/Pagination';
 
+import { setCategory } from '../redux/slices/filterSlice';
+
 export default function Home({searchValue}) {
+	const category = useSelector((state) => state.filterSlice.category);
+	const dispatch = useDispatch();
+
   const [pizzas, setPizzas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [category, setCategory] = useState(0);
   const [sortBy, setSortBy] = useState({name: 'population', sort: 'rating'});
   const [increase, setIncrease] = useState(true);
 	const [page, setPage] = useState(1);
+
+	const onClickCategory = (index) => {
+		dispatch(setCategory(index));
+	};
 
   const host = 'https://65b3353d770d43aba4796ce5.mockapi.io/api/items';
 
   useEffect(() => {
 		setIsLoading(true);
     fetch(
-      `${host}?page=${page}&limit=4&?${category > 0 ? `category=${category}` : ''}&sortBy=${sortBy.sort}&${
+      `${host}?page=${page}&limit=4&${category > 0 ? `category=${category}` : ''}&sortBy=${sortBy.sort}&${
         increase ? `order=asc` : `order=desc`
       }`,
     )
@@ -37,7 +46,7 @@ export default function Home({searchValue}) {
   return (
     <>
       <div className="content__top">
-        <Categories category={category} onClickCategory={(index) => setCategory(index)} />
+        <Categories category={category} onClickCategory={onClickCategory} />
         <SortPopup
           sortBy={sortBy}
           onClickSortBy={(index) => setSortBy(index)}

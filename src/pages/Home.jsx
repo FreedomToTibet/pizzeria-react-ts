@@ -10,13 +10,13 @@ import { Pagination } from '../components/Pagination';
 import { setCategory, setIncrease } from '../redux/slices/filterSlice';
 
 export default function Home({searchValue}) {
-	const category = useSelector((state) => state.filterSlice.category);
-	const increase = useSelector((state) => state.filterSlice.increase);
+	const {category, increase, sortBy} = useSelector((state) => state.filterSlice);
+	// const increase = useSelector((state) => state.filterSlice.increase);
+	// const sortBy = useSelector((state) => state.filterSlice.sortBy);
 	const dispatch = useDispatch();
 
   const [pizzas, setPizzas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [sortBy, setSortBy] = useState({name: 'population', sort: 'rating'});
 	const [page, setPage] = useState(1);
 
 	const onClickCategory = (index) => {
@@ -51,8 +51,6 @@ export default function Home({searchValue}) {
       <div className="content__top">
         <Categories category={category} onClickCategory={onClickCategory} />
         <SortPopup
-          sortBy={sortBy}
-          onClickSortBy={(index) => setSortBy(index)}
           onClickIncrease={onClickIncrease}
 					increase={increase}
         />

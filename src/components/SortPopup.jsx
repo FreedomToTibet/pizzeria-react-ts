@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIncrease, setSortBy } from '../redux/slices/filterSlice';
 
@@ -7,6 +7,8 @@ const SortPopup = () => {
 	const {increase, sortBy} = useSelector((state) => state.filterSlice);
 	const [visiblePopup, setVisiblePopup] = useState(false);
 	const list = [{name: 'population', sort: 'rating'}, {name: 'price', sort: 'price'}, {name: 'name', sort: 'title'}];
+
+	const sortRef = useRef();
 
 	const onClickSetectedItem = (obj) => {
 		dispatch(setSortBy(obj));
@@ -17,8 +19,21 @@ const SortPopup = () => {
 		dispatch(setIncrease());
 	}
 
+	const handleClickOutside = (event) => {
+    if (sortRef.current && !sortRef.current.contains(event.target)) {
+      setVisiblePopup(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
 	return (
-		<div className="sort">
+		<div className="sort" ref={sortRef}>
 				<div className="sort__label">
 
 					<svg

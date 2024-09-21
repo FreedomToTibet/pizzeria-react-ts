@@ -4,6 +4,7 @@ const initialState = {
 	category: 0,
 	increase: true,
 	sortBy: { name: 'population', sort: 'rating' },
+	page: 1,
 };
 
 const filterSlice = createSlice({
@@ -19,9 +20,11 @@ const filterSlice = createSlice({
 		setIncrease: (state) => {
 			state.increase = !state.increase;
 		},
+		setPage: (state, action) => {
+			state.page = action.payload;
+		},
 	},
 });
 
-const { actions, reducer } = filterSlice;
-export const { setCategory, setSortBy, setIncrease } = actions;
-export default reducer;
+export const { setCategory, setSortBy, setIncrease, setPage } = filterSlice.actions;
+export default filterSlice.reducer;

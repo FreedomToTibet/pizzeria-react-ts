@@ -1,16 +1,20 @@
 import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSortBy } from '../redux/slices/filterSlice';
+import { setIncrease, setSortBy } from '../redux/slices/filterSlice';
 
-const SortPopup = ({onClickIncrease, increase}) => {
+const SortPopup = () => {
 	const dispatch = useDispatch();
-	const sortBy = useSelector((state) => state.filterSlice.sortBy);
+	const {increase, sortBy} = useSelector((state) => state.filterSlice);
 	const [visiblePopup, setVisiblePopup] = useState(false);
 	const list = [{name: 'population', sort: 'rating'}, {name: 'price', sort: 'price'}, {name: 'name', sort: 'title'}];
 
 	const onClickSetectedItem = (obj) => {
 		dispatch(setSortBy(obj));
 		setVisiblePopup(false);
+	}
+
+	const onClickIncrease = () => {
+		dispatch(setIncrease());
 	}
 
 	return (

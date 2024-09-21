@@ -1,65 +1,107 @@
 import React, {useState, useEffect} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+
+import axios from 'axios';
+import qs from 'qs';
 
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Categories from '../components/Categories';
 import SortPopup from '../components/SortPopup';
 import PizzaBlock from '../components/PizzaBlock';
-import { Pagination } from '../components/Pagination';
+import {Pagination} from '../components/Pagination';
 
-import { setCategory, setIncrease } from '../redux/slices/filterSlice';
+import {setCategory, setPage, setSortBy} from '../redux/slices/filterSlice';
 
 export default function Home({searchValue}) {
-	const {category, increase, sortBy} = useSelector((state) => state.filterSlice);
-	// const increase = useSelector((state) => state.filterSlice.increase);
-	// const sortBy = useSelector((state) => state.filterSlice.sortBy);
-	const dispatch = useDispatch();
+  const {category, increase, sortBy, page} = useSelector((state) => state.filterSlice);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const [pizzas, setPizzas] = useState([]);
+  const [pizzasValue, setPizzasValue] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-	const [page, setPage] = useState(1);
+  const [pizzasPageQuantity, setPizzasPageQuantity] = useState(0);
 
-	const onClickCategory = (index) => {
-		dispatch(setCategory(index));
-	};
-	const onClickIncrease = () => {
-		dispatch(setIncrease());
-	};
+  const onClickCategory = (index) => {
+    dispatch(setCategory(index));
+  };
 
-  const host = 'https://65b3353d770d43aba4796ce5.mockapi.io/api/items';
+  const onChangePage = (number) => {
+    dispatch(setPage(number));
+  };
 
   useEffect(() => {
-		setIsLoading(true);
-    fetch(
-      `${host}?page=${page}&limit=4&${category > 0 ? `category=${category}` : ''}&sortBy=${sortBy.sort}&${
-        increase ? `order=asc` : `order=desc`
-      }`,
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setPizzas(json);
+    if (!window.location.search) return;
+
+    const query = qs.parse(window.location.search, {ignoreQueryPrefix: true});
+		console.log(query);
+    dispatch(setCategory(Number(query.category)));
+    dispatch(setPage(Number(query.page)));
+    dispatch(setSortBy({name: 'population', sort: query.sortBy}));
+  }, [dispatch]);
+
+  const host = 'https://66ebdc782b6cf2b89c5c1b3d.mockapi.io/api/items';
+
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(
+        `${host}?page=${page}&&${category > 0 ? `category=${category}` : ''}&sortBy=${
+          sortBy.sort
+        }&${increase ? `order=asc` : `order=desc`}`,
+      )
+      .then((response) => {
+        const data = response.data;
+        setPizzasValue(data);
+        setPizzasPageQuantity(Math.ceil(data.length / 4));
+      });
+			
+    axios
+      .get(
+        `${host}?page=${page}&limit=4&${
+          category > 0 ? `category=${category}` : ''
+        }&sortBy=${sortBy.sort}&${increase ? `order=asc` : `order=desc`}`,
+      )
+      .then((response) => {
+        setPizzas(response.data);
         setIsLoading(false);
       });
+
   }, [category, sortBy, increase, page]);
 
-	const pizzasPage = searchValue ? pizzas.filter((pizza) => pizza.title.toLowerCase().includes(searchValue.toLowerCase())) : pizzas;
-	const pizzasRender = pizzasPage.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />);
-	const skeletons = [...new Array(4)].map((_, index) => <Skeleton key={index} />)
+  useEffect(() => {
+    const query = qs.stringify({
+      sortBy: sortBy.sort,
+      order: increase ? 'asc' : 'desc',
+      category: category,
+      page,
+    });
+    navigate(`?${query}`);
+  }, [category, sortBy, increase, page, navigate]);
+
+  const pizzasPage = searchValue
+    ? pizzasValue.filter((pizza) =>
+        pizza.title.toLowerCase().includes(searchValue.toLowerCase()),
+      )
+    : pizzas;
+
+  const pizzasRender = pizzasPage.map((item) => <PizzaBlock key={item.id} {...item} />);
+  const skeletons = [...new Array(4)].map((_, index) => <Skeleton key={index} />);
 
   return (
     <>
       <div className="content__top">
         <Categories category={category} onClickCategory={onClickCategory} />
-        <SortPopup
-          onClickIncrease={onClickIncrease}
-					increase={increase}
-        />
+        <SortPopup />
       </div>
-      <h2 className="content__title">All</h2>
-      <div className="content__items">
-        {isLoading ? skeletons : pizzasRender}
-      </div>
-			<Pagination onChangePage={number => setPage(number)} />
+      {/* <h2 className="content__title">{categories[category]}</h2> */}
+      <div className="content__items">{isLoading ? skeletons : pizzasRender}</div>
+      <Pagination
+        pageCount={searchValue ? Math.ceil(pizzasPage.length / 4) : pizzasPageQuantity}
+        onChangePage={onChangePage}
+      />
     </>
   );
 }

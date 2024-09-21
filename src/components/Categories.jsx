@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Categories = ({category, onClickCategory}) => {
+const Categories = ({ category, onClickCategory }) => {
 	
 	const categories = ['All', 'Meat', 'Vegan', 'Grill', 'Spice', 'Closed'];
 

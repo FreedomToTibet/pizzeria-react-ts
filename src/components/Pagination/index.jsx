@@ -3,7 +3,8 @@ import ReactPaginate from 'react-paginate';
 
 import styles from './Pagination.module.scss';
 
-export const Pagination = ({onChangePage}) => {
+export const Pagination = ({ pageCount, onChangePage }) => {
+	
   return (
     <ReactPaginate
 			className={styles.root}
@@ -11,9 +12,9 @@ export const Pagination = ({onChangePage}) => {
       nextLabel={'>'}
       breakLabel={'...'}
       breakClassName={'break-me'}
-      pageCount={3}
+      pageCount={pageCount}
       marginPagesDisplayed={2}
-      pageRangeDisplayed={6}
+      pageRangeDisplayed={null}
       containerClassName={'pagination'}
       subContainerClassName={'pages pagination'}
       activeClassName={'active'}

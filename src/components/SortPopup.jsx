@@ -5,7 +5,7 @@ import { setIncrease, setSortBy } from '../redux/slices/filterSlice';
 const SortPopup = () => {
 	const dispatch = useDispatch();
 	const {increase, sortBy} = useSelector((state) => state.filterSlice);
-	const [visiblePopup, setVisiblePopup] = useState(false);
+		const [visiblePopup, setVisiblePopup] = useState(false);
 	const list = [{name: 'population', sort: 'rating'}, {name: 'price', sort: 'price'}, {name: 'name', sort: 'title'}];
 
 	const sortRef = useRef();
@@ -32,6 +32,8 @@ const SortPopup = () => {
     };
   }, []);
 
+	const {name} = list.find((item) => item.sort === sortBy.sort) || list[0];
+
 	return (
 		<div className="sort" ref={sortRef}>
 				<div className="sort__label">
@@ -51,7 +53,7 @@ const SortPopup = () => {
 						/>
 					</svg>
 					<b>Sort by:</b>
-					<span onClick={() => setVisiblePopup(!visiblePopup)}>{sortBy.name}</span>
+					<span onClick={() => setVisiblePopup(!visiblePopup)}>{name}</span>
 				</div>
 				{visiblePopup && (
 					<div className="sort__popup">

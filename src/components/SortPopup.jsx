@@ -6,7 +6,7 @@ const SortPopup = () => {
 	const dispatch = useDispatch();
 	const {increase, sortBy} = useSelector((state) => state.filterSlice);
 		const [visiblePopup, setVisiblePopup] = useState(false);
-	const list = [{name: 'population', sort: 'rating'}, {name: 'price', sort: 'price'}, {name: 'name', sort: 'title'}];
+	const list = [{name: 'popularity', sort: 'rating'}, {name: 'price', sort: 'price'}, {name: 'name', sort: 'title'}];
 
 	const sortRef = useRef();
 

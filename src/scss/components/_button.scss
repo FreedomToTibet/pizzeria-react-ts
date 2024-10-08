@@ -45,11 +45,11 @@
   }
 
   &--black {
-    background-color: $black;
+    background-color: #fe5f1e;
 
     &:hover,
     &:active {
-      background-color: lighten($color: $black, $amount: 10);
+      background-color: lighten($color: #fe5f1e, $amount: 5);
     }
   }
 

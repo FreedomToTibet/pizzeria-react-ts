@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 
@@ -10,16 +10,19 @@ import Categories from '../components/Categories';
 import SortPopup from '../components/SortPopup';
 import PizzaBlock from '../components/PizzaBlock';
 import {Pagination} from '../components/Pagination';
+import {SearchContext} from './AppLayout';
 
 import {setCategory, setPage, setSortBy, setIncrease} from '../redux/slices/filterSlice';
 import {fetchPizzas} from '../redux/slices/pizzaSlice';
 
-export default function Home({searchValue}) {
+export default function Home() {
   const {category, increase, sortBy, page} = useSelector((state) => state.filterSlice);
   const {pizzas, status} = useSelector((state) => state.pizzaSlice);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+	const { searchValue } = useContext(SearchContext);
 
   const [pizzasValue, setPizzasValue] = useState([]);
   const [pizzasPageQuantity, setPizzasPageQuantity] = useState(0);

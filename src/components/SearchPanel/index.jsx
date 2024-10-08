@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useEffect, useState } from 'react';
-import { SearchContext } from '../../App';
+import { SearchContext } from '../../pages/AppLayout';
 
 import styles from './SearchPanel.module.scss';
 

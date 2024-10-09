@@ -3,13 +3,24 @@ import { useSelector } from 'react-redux';
 
 import { Link, useLocation } from 'react-router-dom';
 
-import logoSvg from '../assets/img/pizza-logo.svg';
 import SearchPanel from './SearchPanel';
+
+interface ICartItem {
+  id: string;
+  title: string;
+  quantity: number;
+  price: number;
+}
+
+interface ICartState {
+  total: number;
+  items: ICartItem[];
+}
 
 const Header = () => {
 	const location = useLocation();
 
-	const { total, items } = useSelector((state) => state.cartSlice);
+	const { total, items } = useSelector((state: { cartSlice: ICartState }) => state.cartSlice);
 	const totalCount = items.reduce((sum, obj) => obj.quantity + sum, 0);
 
 	return (
@@ -17,7 +28,7 @@ const Header = () => {
         <div className="container">
 					<Link to="/">
 						<div className="header__logo">
-							<img width="38" src={logoSvg} alt="Pizza logo" />
+							<img width="38" src="/img/pizza-logo.svg" alt="Pizza logo" />
 							<div>
 								<h1>Heaven&Hell Pizza</h1>
 								<p>the most delicious pizza in both worlds</p>

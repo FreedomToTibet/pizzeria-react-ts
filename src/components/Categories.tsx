@@ -1,6 +1,9 @@
-import React from 'react';
+interface ICategoriesProps {
+	category: number;
+	onClickCategory: (index: number) => void;
+}
 
-const Categories = ({ category, onClickCategory }) => {
+const Categories: React.FC<ICategoriesProps> = ({ category, onClickCategory }) => {
 	
 	const categories = ['All', 'Meat', 'Vegan', 'Grill', 'Spice', 'Closed'];
 

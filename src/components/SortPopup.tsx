@@ -1,16 +1,28 @@
-import React, {useState, useRef, useEffect} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIncrease, setSortBy } from '../redux/slices/filterSlice';
 
+interface ISortBy {
+  name: string;
+  sort: string;
+}
+
+interface IFilterState {
+  category: number;
+  increase: boolean;
+  sortBy: ISortBy;
+  page: number;
+}
+
 const SortPopup = () => {
 	const dispatch = useDispatch();
-	const {increase, sortBy} = useSelector((state) => state.filterSlice);
+	const {increase, sortBy} = useSelector((state: { filterSlice: IFilterState }) => state.filterSlice);
 		const [visiblePopup, setVisiblePopup] = useState(false);
 	const list = [{name: 'popularity', sort: 'rating'}, {name: 'price', sort: 'price'}, {name: 'name', sort: 'title'}];
 
-	const sortRef = useRef();
+	const sortRef = useRef<HTMLDivElement>(null);
 
-	const onClickSetectedItem = (obj) => {
+	const onClickSetectedItem = (obj: ISortBy) => {
 		dispatch(setSortBy(obj));
 		setVisiblePopup(false);
 	}
@@ -19,8 +31,8 @@ const SortPopup = () => {
 		dispatch(setIncrease());
 	}
 
-	const handleClickOutside = (event) => {
-    if (sortRef.current && !sortRef.current.contains(event.target)) {
+	const handleClickOutside = (event: MouseEvent) => {
+    if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
       setVisiblePopup(false);
     }
   };

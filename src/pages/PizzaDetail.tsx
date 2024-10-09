@@ -3,11 +3,19 @@ import {useNavigate, useParams} from 'react-router-dom';
 
 import axios from 'axios';
 
+interface IPizza {
+  id: string;
+  title: string;
+  imageUrl: string;
+  price: number;
+  description: string;
+}
+
 const PizzaDetail = () => {
   const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams<{ id: string }>();
 
-  const [pizza, setPizza] = useState(null);
+  const [pizza, setPizza] = useState<IPizza | null>(null);
 
   useEffect(() => {
     async function fetchData() {

@@ -1,6 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface ICartItem {
+  id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  size: number;
+  type: string;
+  quantity: number;
+}
+
+interface ICartState {
+  total: number;
+  items: ICartItem[];
+}
+
+const initialState: ICartState = {
 	total: 0,
 	items: [],
 };
@@ -9,7 +24,7 @@ const cartSlice = createSlice({
 	name: 'cart',
 	initialState,
 	reducers: {
-		addItem: (state, action) => {
+		addItem: (state, action: PayloadAction<Omit<ICartItem, 'quantity'>>) => {
 			const existingItem = state.items.find(obj => obj.id === action.payload.id);
 
 			if (existingItem) {
@@ -21,19 +36,21 @@ const cartSlice = createSlice({
 				state.total += Math.floor(action.payload.price);
 			}
 		},
-		decreaseItem: (state, action) => {
+		decreaseItem: (state, action: PayloadAction<{ id: string; price: number }>) => {
 			const existingItem = state.items.find(obj => obj.id === action.payload.id);
 
-			if (existingItem.quantity > 1) {
+			if (existingItem && existingItem.quantity > 1) {
 				existingItem.quantity -= 1;
 				state.total -= Math.floor(action.payload.price);
 				return;
 			}
 		},
-		removeItem: (state, action) => {
+		removeItem: (state, action: PayloadAction<{ id: string; price: number }>) => {
 			const existingItem = state.items.find(obj => obj.id === action.payload.id);
-			state.total -= Math.floor(action.payload.price) * existingItem.quantity;
-			state.items = state.items.filter((obj) => obj.id !== action.payload.id);
+			if (existingItem) {
+				state.total -= Math.floor(action.payload.price) * existingItem.quantity;
+				state.items = state.items.filter((obj) => obj.id !== action.payload.id);
+			}
 		},
 		clearItems: (state) => {
 			state.items = [];

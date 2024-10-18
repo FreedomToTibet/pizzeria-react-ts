@@ -1,4 +1,4 @@
-import {useState, useRef, useEffect} from 'react';
+import {useState, useRef, useEffect, memo} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIncrease, setSortBy } from '../redux/slices/filterSlice';
 
@@ -14,7 +14,7 @@ interface IFilterState {
   page: number;
 }
 
-const SortPopup = () => {
+const SortPopup = memo(() => {
 	const dispatch = useDispatch();
 	const {increase, sortBy} = useSelector((state: { filterSlice: IFilterState }) => state.filterSlice);
 		const [visiblePopup, setVisiblePopup] = useState(false);
@@ -82,6 +82,6 @@ const SortPopup = () => {
 				)}
 			</div>
 	);
-};
+});
 
 export default SortPopup;

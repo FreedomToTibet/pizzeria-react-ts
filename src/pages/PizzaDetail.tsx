@@ -42,18 +42,19 @@ const PizzaDetail = () => {
 
   return (
     <div className="pizza-detail">
+			<button
+        className="button button--outline button--add go-back-btn"
+				style={{ marginLeft: '2%', marginBottom: '1%' }}
+        onClick={handleReturn}
+      >
+        <span>Return</span>
+      </button>
       <h1>{pizza.title}</h1>
       <img src={pizza.imageUrl} alt={pizza.title} />
       <div className="pizza-detail__info">
         <span>Price: ${pizza.price}</span>
       </div>
       <p><span style={{fontWeight: "bold"}}>Ingredients:</span> {pizza.description}</p>
-      <button
-        className="button button--outline button--add go-back-btn"
-        onClick={handleReturn}
-      >
-        <span>Return</span>
-      </button>
     </div>
   );
 };

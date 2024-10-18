@@ -5,7 +5,7 @@ interface ICategoriesProps {
 
 const Categories: React.FC<ICategoriesProps> = ({ category, onClickCategory }) => {
 	
-	const categories = ['All', 'Meat', 'Vegan', 'Grill', 'Spice', 'Closed'];
+	const categories = ['All', 'Meat', 'Vegan', 'Grill', 'Spice', 'Mixed'];
 
 	return (
 		<div className="categories">

@@ -2,17 +2,28 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { clearItems } from '../redux/slices/cartSlice';
+import { RootState } from '../redux/store';
 
 import { useNavigate } from 'react-router-dom';
 
 import CartItem from '../components/CartItem';
 import CartEmpty from '../components/CartEmpty';
 
+interface IPizza {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  size: number;
+  quantity: number;
+  imageUrl: string;
+}
+
 const Cart = () =>{
 	const dispatch = useDispatch();
-	const items = useSelector(state => state.cartSlice.items);
+	const items = useSelector((state: RootState) => state.cartSlice.items as IPizza[]);
 	const totalCount = items.reduce((sum, obj) => obj.quantity + sum, 0);
-	const totalPrice = useSelector(state => state.cartSlice.total);
+	const totalPrice = useSelector((state: RootState) => state.cartSlice.total);
 
 	const navigate = useNavigate();
 
@@ -106,7 +117,7 @@ const Cart = () =>{
             </div>
             </div>
             <div className="content__items">
-              {items.map((pizza) => (
+              {items.map((pizza: IPizza) => (
 								<CartItem
 									key={pizza.id}
 									id={pizza.id}

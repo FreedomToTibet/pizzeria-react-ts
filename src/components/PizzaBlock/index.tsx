@@ -1,12 +1,21 @@
-import {useState} from 'react';
+import {useState, FC} from 'react';
 import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem } from '../../redux/slices/cartSlice';
 
-const PizzaBlock = ({id, title, price, imageUrl, sizes, types}) => {
+interface IPizzaBlockProps {
+  id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  sizes: number[];
+  types: number[];
+}
+
+const PizzaBlock: FC<IPizzaBlockProps> = ({id, title, price, imageUrl, sizes, types}) => {
 	const dispatch = useDispatch();
 
-	const quantity = useSelector((state) => state.cartSlice.items.find(obj => obj.id === id)?.quantity);
+	const quantity = useSelector((state: { cartSlice: {items: { id: string; quantity: number }[] }}) => state.cartSlice.items.find(obj => obj.id === id)?.quantity) || 0;
 	
 	const [activeType, setActiveType] = useState(types[0]);
 	const [activeSize, setActiveSize] = useState(0);

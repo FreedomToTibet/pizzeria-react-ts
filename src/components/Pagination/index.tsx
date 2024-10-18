@@ -3,7 +3,13 @@ import ReactPaginate from 'react-paginate';
 
 import styles from './Pagination.module.scss';
 
-export const Pagination = ({ pageCount, onChangePage, currentPage }) => {
+interface IPaginationProps {
+  pageCount: number;
+  onChangePage: (selected: number) => void;
+  currentPage: number;
+}
+
+export const Pagination:React.FC<IPaginationProps> = ({ pageCount, onChangePage, currentPage }) => {
 	
   return (
     <ReactPaginate
@@ -14,6 +20,7 @@ export const Pagination = ({ pageCount, onChangePage, currentPage }) => {
       breakClassName={'break-me'}
       pageCount={pageCount}
       marginPagesDisplayed={2}
+			// @ts-ignore
       pageRangeDisplayed={null}
       containerClassName={'pagination'}
       subContainerClassName={'pages pagination'}

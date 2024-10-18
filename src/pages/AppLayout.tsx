@@ -1,10 +1,15 @@
-import {useState, createContext} from 'react';
+import {useState, createContext, FC} from 'react';
 import {Outlet} from 'react-router-dom';
 import Header from '../components/Header';
 
-export const SearchContext = createContext();
+interface ISearchContextProps {
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const AppLayout = () => {
+export const SearchContext = createContext<ISearchContextProps | undefined>(undefined);
+
+const AppLayout: FC = () => {
   const [searchValue, setSearchValue] = useState('');
 
   return (

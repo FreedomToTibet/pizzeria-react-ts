@@ -32,7 +32,10 @@ export default function Home() {
   const {category, increase, sortBy, page} = useSelector(
     (state: RootState) => state.filterSlice,
   );
-  const {pizzas, status} = useSelector((state: RootState) => state.pizzaSlice);
+  const {pizzas, status} = useSelector((state: RootState) => state.pizzaSlice) as {
+    pizzas: IPizza[];
+    status: string;
+  };
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
@@ -43,7 +46,7 @@ export default function Home() {
   }
   const {searchValue} = context;
 
-  const [pizzasValue, setPizzasValue] = useState<IPizza[]>([]);
+  // const [pizzasValue, setPizzasValue] = useState<IPizza[]>([]);
   const [pizzasPageQuantity, setPizzasPageQuantity] = useState(0);
   const [isQueryParsed, setIsQueryParsed] = useState(false);
   const isMounted = useRef(false);
@@ -81,8 +84,6 @@ export default function Home() {
 
   const host = 'https://66ebdc782b6cf2b89c5c1b3d.mockapi.io/api/items';
 
-  // Fetch data based on updated state
-
 	// Fetch total number of items based on category
   useEffect(() => {
     if (!isQueryParsed) return;
@@ -108,29 +109,6 @@ export default function Home() {
 
     dispatch(fetchPizzas({host, page, category, sortBy, increase}));
   }, [category, sortBy, increase, page, isQueryParsed, dispatch]);
-	
-  // useEffect(() => {
-  //   if (!isQueryParsed) return;
-
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `${host}?page=${page}&&${category > 0 ? `category=${category}` : ''}&sortBy=${
-  //           sortBy.sort
-  //         }&${increase ? `order=asc` : `order=desc`}`,
-  //       );
-  //       const data = response.data;
-  //       setPizzasValue(data);
-  //       setPizzasPageQuantity(Math.ceil(data.length / 4));
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   fetchData();
-
-	// 	dispatch(fetchPizzas({host, page, category, sortBy, increase}));
-  // }, [category, sortBy, increase, page, isQueryParsed, dispatch]);
 
   // Update URL with current state
   useEffect(() => {
@@ -150,7 +128,7 @@ export default function Home() {
   }, [category, sortBy, increase, page, navigate, isQueryParsed]);
 
   const pizzasPage = searchValue
-    ? pizzasValue.filter((pizza) =>
+    ? pizzas.filter((pizza) =>
         pizza.title.toLowerCase().includes(searchValue.toLowerCase()),
       )
     : pizzas;

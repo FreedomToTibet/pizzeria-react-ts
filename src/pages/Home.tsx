@@ -20,12 +20,12 @@ interface IPizza {
   id: string;
   title: string;
   type: string;
-  price: number;
   size: number;
   quantity: number;
   imageUrl: string;
   sizes: number[];
   types: number[];
+	prices: { [key: number]: number };
 }
 
 export default function Home() {

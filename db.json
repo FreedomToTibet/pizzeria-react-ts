@@ -1,0 +1,317 @@
+[
+  {
+    "id": "0",
+    "imageUrl": "/img/pizza/Champion.avif",
+    "title": "Champion",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 20,
+    "category": 1,
+    "rating": 4,
+    "description": "Pepperoni, mushrooms, extra cheese and bacon"
+  },
+  {
+    "id": "1",
+    "imageUrl": "/img/pizza/Cheesy Chicken.avif",
+    "title": "Cheesy Chicken",
+    "types": [
+      0
+    ],
+    "sizes": [
+      26,
+      40
+    ],
+    "price": 21,
+    "category": 1,
+    "rating": 6,
+    "description": "Chicken, tomatoes, cheddar, mozzarella, cheese sauce"
+  },
+  {
+    "id": "2",
+    "imageUrl": "/img/pizza/Chicken BBQ.avif",
+    "title": "Chicken BBQ",
+    "types": [
+      0
+    ],
+    "sizes": [
+      26,
+      40
+    ],
+    "price": 22,
+    "category": 3,
+    "rating": 4,
+    "description": "Chicken, red onions, corn, mozzarella, BBQ sauce, tomato sauce"
+  },
+  {
+    "id": "3",
+    "imageUrl": "/img/pizza/Hawaii.avif",
+    "title": "Hawaii",
+    "types": [
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 23,
+    "category": 1,
+    "rating": 2,
+    "description": "Chicken, pineapple, mozzarella, sweet chili sauce, tomato sauce"
+  },
+  {
+    "id": "4",
+    "imageUrl": "/img/pizza/Cheeseburger Pizza.avif",
+    "title": "Cheeseburger pizza",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 24,
+    "category": 3,
+    "rating": 8,
+    "description": "Beef, tomatoes, onions, cheddar, mozzarella, mayonnaise & ketchup, tomato sauce"
+  },
+  {
+    "id": "5",
+    "imageUrl": "/img/pizza/Meaty BBQ.avif",
+    "title": "Meaty BBQ",
+    "types": [
+      0
+    ],
+    "sizes": [
+      30,
+      40
+    ],
+    "price": 25,
+    "category": 3,
+    "rating": 2,
+    "description": "Beef, pepperoni, sausages, mozzarella, BBQ sauce, tomato sauce"
+  },
+  {
+    "id": "6",
+    "imageUrl": "/img/pizza/Pepperoni.avif",
+    "title": "Pepperoni",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 26,
+    "category": 1,
+    "rating": 9,
+    "description": "Pepperoni, mozzarella, tomato sauce"
+  },
+  {
+    "id": "7",
+    "imageUrl": "/img/pizza/Margherita.avif",
+    "title": "Margherita 🌱",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 27,
+    "category": 2,
+    "rating": 10,
+    "description": "Juicy tomatoes, basil, and mozzarella cheese"
+  },
+  {
+    "id": "8",
+    "imageUrl": "/img/pizza/4 Seasons.avif",
+    "title": "Four seasons",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 22,
+    "category": 5,
+    "rating": 10,
+    "description": "Mushrooms, prosciutto, olives and mozzarella cheese"
+  },
+  {
+    "id": "9",
+    "imageUrl": "/img/pizza/Vegeterian.avif",
+    "title": "Vegeterian 🌱",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 20,
+    "category": 2,
+    "rating": 7,
+    "description": "Mushrooms, bell peppers, corn, olives, red onions, tomatoes, mozzarella, tomato sauce"
+  },
+  {
+    "id": "10",
+    "imageUrl": "/img/pizza/Cheese.avif",
+    "title": "Cheese 🌱",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 24,
+    "category": 2,
+    "rating": 4,
+    "description": "Tomato sauce, mozzarella, gorgonzola, Parmigiano Reggiano, and goat cheese"
+  },
+  {
+    "id": "11",
+    "imageUrl": "/img/pizza/Shrimps pizza.avif",
+    "title": "Shrimps pizza",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      30,
+      40
+    ],
+    "price": 30,
+    "category": 1,
+    "rating": 4,
+    "description": "Shrimp, tomato sauce, mozzarella cheese, garlic and parsley"
+  },
+  {
+    "id": "12",
+    "imageUrl": "/img/pizza/Mexican.avif",
+    "title": "Mexican 🌶",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 23,
+    "category": 4,
+    "rating": 4,
+    "description": "Beef crumbles, tomato sauce, onion, tomato, mozzarella, cheddar, mexican sauce"
+  },
+  {
+    "id": "13",
+    "imageUrl": "/img/pizza/Super Meat.avif",
+    "title": "Super Meat",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      30,
+      40
+    ],
+    "price": 30,
+    "category": 1,
+    "rating": 4,
+    "description": "Chicken, pepperoni, sausages, mozzarella, tomato sauce"
+  },
+  {
+    "id": "14",
+    "imageUrl": "/img/pizza/Meaty.avif",
+    "title": "Meaty",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 28,
+    "category": 1,
+    "rating": 4,
+    "description": "Beef, pepperoni, sausages, mozzarella, BBQ sauce, tomato sauce"
+  },
+  {
+    "id": "15",
+    "imageUrl": "/img/pizza/Ranch.avif",
+    "title": "Ranch",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 25,
+    "category": 1,
+    "rating": 4,
+    "description": "Smokey bacon, pieces of chicken, melty cheese, and creamy ranch"
+  },
+  {
+    "id": "16",
+    "imageUrl": "/img/pizza/Spicy.avif",
+    "title": "Spicy 🌶🌶",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 24,
+    "category": 4,
+    "rating": 4,
+    "description": "Mozzarella cheese, hunter's sausages, pepperoni, jalapeno, chili sauce, pizza sauce"
+  },
+  {
+    "id": "17",
+    "imageUrl": "/img/pizza/Royal.avif",
+    "title": "Royal 🌶",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 24,
+    "category": 4,
+    "rating": 4,
+    "description": "Red onion, chilli sauce, beef, champignons, chicken, pizza-sauce, mozzarella cheese, ham"
+  }
+]

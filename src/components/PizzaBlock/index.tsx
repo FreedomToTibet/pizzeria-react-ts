@@ -6,13 +6,13 @@ import {addItem} from '../../redux/slices/cartSlice';
 interface IPizzaBlockProps {
   id: string;
   title: string;
-  price: number;
   imageUrl: string;
   sizes: number[];
   types: number[];
+	prices: { [key: number]: number };
 }
 
-const PizzaBlock: FC<IPizzaBlockProps> = ({id, title, price, imageUrl, sizes, types}) => {
+const PizzaBlock: FC<IPizzaBlockProps> = ({id, title, prices, imageUrl, sizes, types}) => {
   const dispatch = useDispatch();
 
   const quantity =
@@ -24,6 +24,7 @@ const PizzaBlock: FC<IPizzaBlockProps> = ({id, title, price, imageUrl, sizes, ty
   const [activeType, setActiveType] = useState(types[0]);
   const [activeSize, setActiveSize] = useState(0);
   const typesNames = ['thin', 'traditional'];
+	const price = prices[sizes[activeSize]];
 
   const onClickAddPizza = () => {
     const obj = {

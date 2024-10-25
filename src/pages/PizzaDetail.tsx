@@ -7,8 +7,9 @@ interface IPizza {
   id: string;
   title: string;
   imageUrl: string;
-  price: number;
-  description: string;
+	description: string;
+	sizes: number[];
+  prices: { [key: number]: number };
 }
 
 const PizzaDetail = () => {
@@ -52,7 +53,7 @@ const PizzaDetail = () => {
       <h1>{pizza.title}</h1>
       <img src={pizza.imageUrl} alt={pizza.title} />
       <div className="pizza-detail__info">
-        <span>Price: ${pizza.price}</span>
+			<span>Price: ${pizza.prices[pizza.sizes[0]]}</span>
       </div>
       <p><span style={{fontWeight: "bold"}}>Ingredients:</span> {pizza.description}</p>
     </div>

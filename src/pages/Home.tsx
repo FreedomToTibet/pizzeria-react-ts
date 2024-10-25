@@ -46,7 +46,7 @@ export default function Home() {
   }
   const {searchValue} = context;
 
-  // const [pizzasValue, setPizzasValue] = useState<IPizza[]>([]);
+  const [pizzasValue, setPizzasValue] = useState<IPizza[]>([]);
   const [pizzasPageQuantity, setPizzasPageQuantity] = useState(0);
   const [isQueryParsed, setIsQueryParsed] = useState(false);
   const isMounted = useRef(false);
@@ -94,6 +94,7 @@ export default function Home() {
           `${host}?${category > 0 ? `category=${category}` : ''}`,
         );
         const data = response.data;
+				setPizzasValue(data);
         setPizzasPageQuantity(Math.ceil(data.length / 4));
       } catch (error) {
         console.error(error);
@@ -128,7 +129,7 @@ export default function Home() {
   }, [category, sortBy, increase, page, navigate, isQueryParsed]);
 
   const pizzasPage = searchValue
-    ? pizzas.filter((pizza) =>
+    ? pizzasValue.filter((pizza) =>
         pizza.title.toLowerCase().includes(searchValue.toLowerCase()),
       )
     : pizzas;
@@ -158,11 +159,11 @@ export default function Home() {
           {status === 'loading' ? skeletons : pizzasRender}
         </div>
       )}
-      <Pagination
+      {!searchValue && <Pagination
         pageCount={searchValue ? Math.ceil(pizzasPage.length / 4) : pizzasPageQuantity}
         onChangePage={onChangePage}
         currentPage={page}
-      />
+      />}
     </>
   );
 }
